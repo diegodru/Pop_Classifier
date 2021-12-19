@@ -1,4 +1,6 @@
 from sklearn import neighbors
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, f1_score, confusion_matrix, accuracy_score
 import pandas as pd
 import numpy as np
 import json
@@ -18,6 +20,9 @@ def main():
     rf = RandomForestClassifier(n_estimators=50, criterion="gini", max_depth=15, max_features=25, n_jobs=5)
     algo = rf
     algo.fit(X, y)
+    y_train = algo.predict(X)
+    print(accuracy_score(y_train, y))
+    print(f1_score(y_train, y, average="macro"))
     pk.dump(obj=algo, file=outfile)
 
 if __name__ == "__main__":

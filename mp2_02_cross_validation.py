@@ -30,8 +30,8 @@ def main():
         y_train, y_test = y[train_index], y[test_index]
         algo.fit(X_train, y_train)
         y_pred = algo.predict(X_test)
-        print(accuracy_score(y_test, y_pred))
-        #print(f1_score(y_test, y_pred, average="micro"))
+        #print(accuracy_score(y_test, y_pred))
+        print(f1_score(y_test, y_pred, average="macro"))
         #print(classification_report(y_test, y_pred, zero_division=0))
 
 
