@@ -25,7 +25,7 @@ def processImages(files):
         if not M_tapon["m00"] == 0:
             cX_tapon = int(M_tapon["m10"] / M_tapon["m00"])
             cY_tapon = int(M_tapon["m01"] / M_tapon["m00"])
-            #tapon = tapon[cY_tapon - 40 if cY_tapon - 40 > 0 else 0:cY_tapon + 40, cX_tapon - 40 if cX_tapon - 40 > 0 else 0: cX_tapon + 40]
+            tapon = tapon[cY_tapon - 40 if cY_tapon - 40 > 0 else 0:cY_tapon + 40, cX_tapon - 40 if cX_tapon - 40 > 0 else 0: cX_tapon + 40]
         hist_tapon = cv2.calcHist([tapon], [0, 1, 2], None, [5, 5, 5], [0, 256, 0, 256, 0, 256])
 
         etiquetas = blur[int(pix_h*0.3):int(pix_h*0.8), int(pix_w/2 - 100):int(pix_w/2 + 100)]
@@ -42,6 +42,9 @@ def processImages(files):
         hist_et = cv2.calcHist([etiquetas], [0, 1, 2], None, [5, 5, 5], [0, 256, 0, 256, 0, 256])
         vector = np.append([f'{fname}'], [hist_tapon, hist_et])
         vectors.append(vector)
+        cv2.imshow("etiqueta", etiquetas)
+        cv2.imshow("tapon", tapon)
+        cv2.waitKey(0)
     return np.array(vectors)
 
 def main():
