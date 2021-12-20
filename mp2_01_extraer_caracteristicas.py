@@ -42,9 +42,6 @@ def processImages(files):
         hist_et = cv2.calcHist([etiquetas], [0, 1, 2], None, [5, 5, 5], [0, 256, 0, 256, 0, 256])
         vector = np.append([f'{fname}'], [hist_tapon, hist_et])
         vectors.append(vector)
-        cv2.imshow("etiqueta", etiquetas)
-        cv2.imshow("tapon", tapon)
-        cv2.waitKey(0)
     return np.array(vectors)
 
 def main():
